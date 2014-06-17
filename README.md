@@ -6,7 +6,7 @@ GitLogFusion
 This code provides web based Git Log statistics via ColdFusion. It will provide:
 
 * Author List from the Git repo.
-* Commit counts, by author.
+* Commit counts, by author. A date range is optional.
 * A range/author filtered listing of the git log
 * Related file changes, by commit id.
 * Optional regex linking of commit msgs to issue tracking.
