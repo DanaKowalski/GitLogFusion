@@ -2,7 +2,7 @@
 	<cffunction name="execGit" access="private" output="false" returntype="string">
 		<cfargument name="gitCommand" 	required="true" 	type="string" />
 		<cfargument name="gitArguments" required="true" 	type="string" />
-		<cfargument name="logType" 			required="false" 	type="string" default="log" />
+		<cfargument name="logType" 		required="false" 	type="string" default="log" />
 		
 		<cftry>
 			<cfexecute name="#getGitPath()#" arguments="--git-dir=#getRepoPath()# #arguments.gitCommand# #arguments.gitArguments#" timeout="20" variable="local.return" errorvariable="local.error"></cfexecute>
