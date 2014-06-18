@@ -3,17 +3,17 @@
 <!doctype html>
 <html>
 	<head>
-	    <link rel="stylesheet" href="/lib/bootstrap/css/slate.min.css">
-			<link rel="stylesheet" href="inc/style.css">
-	    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
-			<script type="text/javascript" src="inc/devdb.js"></script>
-			
-			<title>Git Development</title>
+		<link rel="stylesheet" href="/lib/bootstrap/css/slate.min.css">
+		<link rel="stylesheet" href="inc/style.css">
+		<script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="inc/devdb.js"></script>
+
+		<title>Git Development</title>
 	</head>
-	
+
 	<body style="padding:.5em;">
 		<nav class="navbar navbar-default navbar-static-top" role="navigation"><h2><a href="index.cfm">Git Development</a></h2></nav>
-		
+
 		<div class="row">
 			<div class="col-md-9">
 				<div class="navbar centered padded">
@@ -27,12 +27,12 @@
 						</select>
 					</span>
 				</div>
-				
+
 				<div id="gitLog">
-					
+
 				</div>
 			</div>
-			
+
 			<div class="col-md-3">
 				<fieldset>
 					<legend>Git Counts</legend>

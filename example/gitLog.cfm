@@ -13,7 +13,7 @@
 			<th>Commit</th>
 		</tr>
 	</thead>
-	
+
 	<cfoutput>
 	<tbody>
 		<cfloop from="1" to="#arrayLen(xmlNodes)#" index="i">
@@ -27,12 +27,12 @@
 						<div><pre><em>#application.git.commitFileList(xmlNodes[i].id.xmltext)#</em></pre></div>
 					</td>
 				</tr>
-			
+
 				<cfcatch>
 					<tr><td colspan="3">ERROR - <cfoutput>#cfcatch.message# - #cfcatch.detail#</cfoutput></td></tr>
 				</cfcatch>
 			</cftry>
-			
+
 			<!--- dump to the screen if its a larger data set --->
 			<cfif i MOD 50>
 				<cfflush />

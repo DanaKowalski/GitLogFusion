@@ -7,7 +7,7 @@
 		<tr>
 			<th>Author</th>
 			<th>Count</th>
-		</tr>	
+		</tr>
 		</thead>
 		<tbody>
 			<cfloop from="1" to="#structCount(gitCounts)#" index="i">
