@@ -30,6 +30,10 @@
 			local.argList = local.argList & ' --date=short --pretty=format:"<entry><author>%an</author><commitDate>%cd</commitDate><messageBody>%s</messageBody><id>%H</id></entry>"';
 		}
 
+		if (arguments.logType == 'piped') {
+			local.argList = local.argList & ' --date=short --pretty=format:"%an||%cd||%s||%H"';
+		}
+
 		if (val(arguments.limit)) {
 			local.argList = local.argList & " -n " & arguments.limit;
 		}
