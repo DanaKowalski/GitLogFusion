@@ -1,9 +1,8 @@
 ﻿<cfparam name="URL.author" 	default="" />
 <cfparam name="URL.keyword" default="" />
 <cfparam name="URL.limit" 	default="10" />
-<cfset gitLog 	= application.git.log('xml','',URL.limit,URL.author) />
-<cfset gitLog 	= xmlParse(gitLog) />
-<cfset xmlNodes = xmlSearch(gitLog,'/GitLog/entry') />
+<cfset gitLog 	= application.git.log('piped','',URL.limit,URL.author) />
+<cfset gitLog 	= listToArray(gitLog, chr(10)) />
 
 <table class="table table-bordered">
 	<thead>
@@ -13,28 +12,33 @@
 			<th>Commit</th>
 		</tr>
 	</thead>
-	
+
 	<cfoutput>
 	<tbody>
-		<cfloop from="1" to="#arrayLen(xmlNodes)#" index="i">
+		<cfloop array="#gitLog#" index="logEntry">
+			<cfset lineDetail = listToArray(logEntry, "||") />
+			<cfset author = lineDetail[1] />
+			<cfset date = lineDetail[2] />
+			<cfset logText = lineDetail[3] />
+			<cfset id = lineDetail[4] />
 			<cftry>
 				<tr>
-					<td>#dateFormat(xmlNodes[i].commitDate.xmltext, "mm/dd/yy")#</td>
-					<td>#xmlNodes[i].author.xmltext#</td>
+					<td>#dateFormat(date, "mm/dd/yy")#</td>
+					<td>#author#</td>
 					<td>
-						<div style="font-weight:bold;">ID: #xmlNodes[i].id.xmltext#</div>
-						<div>#application.git.gitIssueTrackingLink(xmlNodes[i].messageBody.xmltext)#</div>
-						<div><pre><em>#application.git.commitFileList(xmlNodes[i].id.xmltext)#</em></pre></div>
+						<div style="font-weight:bold;">ID: #id#</div>
+						<div>#application.git.gitIssueTrackingLink(logText)#</div>
+						<div><pre><em>#application.git.commitFileList(id)#</em></pre></div>
 					</td>
 				</tr>
-			
+
 				<cfcatch>
 					<tr><td colspan="3">ERROR - <cfoutput>#cfcatch.message# - #cfcatch.detail#</cfoutput></td></tr>
 				</cfcatch>
 			</cftry>
-			
+
 			<!--- dump to the screen if its a larger data set --->
-			<cfif i MOD 50>
+			<cfif arrayFind(gitLog, logEntry) MOD 50>
 				<cfflush />
 			</cfif>
 		</cfloop>

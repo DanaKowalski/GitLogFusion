@@ -1,5 +1,6 @@
-﻿<cfparam name="URL.range" default="0" />
-<cfset gitCounts = application.git.commitCounts(url.range,0) />
+﻿<cfparam name="URL.start" default="0" />
+<cfparam name="URL.end" default="0" />
+<cfset gitCounts = application.git.commitCounts(url.start, url.end) />
 
 <div>
 	<table class="table table-bordered">
@@ -7,25 +8,33 @@
 		<tr>
 			<th>Author</th>
 			<th>Count</th>
-		</tr>	
+		</tr>
 		</thead>
 		<tbody>
-			<cfloop from="1" to="#structCount(gitCounts)#" index="i">
+			<cfif structIsEmpty(gitCounts)>
 				<tr>
-					<td><cfoutput>#gitCounts[i]['author']#</cfoutput></td>
-					<td><cfoutput>#gitCounts[i]['count']#</cfoutput></td>
+					<td colspan="2">No results available.</td>
 				</tr>
-			</cfloop>
+			<cfelse>
+				<cfloop collection="#gitCounts#" item="author">
+					<tr>
+						<td><cfoutput>#author#</cfoutput></td>
+						<td><cfoutput>#gitCounts[author]#</cfoutput></td>
+					</tr>
+				</cfloop>
+			</cfif>
 		</tbody>
 	</table>
 </div>
 
-<div>
-	<cfchart format="png" backgroundcolor="##272B30">
-		<cfchartseries type="pie">
-			<cfloop from="1" to="#structCount(gitCounts)#" index="i">
-				<cfchartdata item="#gitCounts[i]['author']#" value="#gitCounts[i]['count']#" />
-			</cfloop>
-		</cfchartseries>
-	</cfchart>
-</div>
+<cfif !structIsEmpty(gitCounts)>
+	<div>
+		<cfchart format="png" backgroundcolor="##272B30">
+			<cfchartseries type="pie">
+				<cfloop collection="#gitCounts#" item="author">
+					<cfchartdata item="#author#" value="#gitCounts[author]#" />
+				</cfloop>
+			</cfchartseries>
+		</cfchart>
+	</div>
+</cfif>
