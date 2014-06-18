@@ -3,10 +3,10 @@
 <!doctype html>
 <html>
 	<head>
-		<link rel="stylesheet" href="inc/bootstrap.slate.min.css">
-		<link rel="stylesheet" href="inc/style.css">
-		<script type="text/javascript" src="inc/jquery-2.1.1.min.js"></script>
-		<script type="text/javascript" src="inc/devdb.js"></script>
+		<link rel="stylesheet" href="assets/bootstrap.slate.min.css">
+		<link rel="stylesheet" href="assets/style.css">
+		<script type="text/javascript" src="assets/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="assets/devdb.js"></script>
 
 		<title>Git Development</title>
 	</head>
