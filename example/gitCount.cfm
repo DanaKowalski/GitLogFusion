@@ -11,22 +11,30 @@
 		</tr>
 		</thead>
 		<tbody>
-			<cfloop collection="#gitCounts#" item="author">
+			<cfif structIsEmpty(gitCounts)>
 				<tr>
-					<td><cfoutput>#author#</cfoutput></td>
-					<td><cfoutput>#gitCounts[author]#</cfoutput></td>
+					<td colspan="2">No results available.</td>
 				</tr>
-			</cfloop>
+			<cfelse>
+				<cfloop collection="#gitCounts#" item="author">
+					<tr>
+						<td><cfoutput>#author#</cfoutput></td>
+						<td><cfoutput>#gitCounts[author]#</cfoutput></td>
+					</tr>
+				</cfloop>
+			</cfif>
 		</tbody>
 	</table>
 </div>
 
-<div>
-	<cfchart format="png" backgroundcolor="##272B30">
-		<cfchartseries type="pie">
-			<cfloop from="1" to="#structCount(gitCounts)#" index="i">
-				<cfchartdata item="#gitCounts[i]['author']#" value="#gitCounts[i]['count']#" />
-			</cfloop>
-		</cfchartseries>
-	</cfchart>
-</div>
+<cfif !structIsEmpty(gitCounts)>
+	<div>
+		<cfchart format="png" backgroundcolor="##272B30">
+			<cfchartseries type="pie">
+				<cfloop collection="#gitCounts#" item="author">
+					<cfchartdata item="#author#" value="#gitCounts[author]#" />
+				</cfloop>
+			</cfchartseries>
+		</cfchart>
+	</div>
+</cfif>
