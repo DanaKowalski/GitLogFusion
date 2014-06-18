@@ -1,5 +1,6 @@
-﻿<cfparam name="URL.range" default="0" />
-<cfset gitCounts = application.git.commitCounts(url.range,0) />
+﻿<cfparam name="URL.start" default="0" />
+<cfparam name="URL.end" default="0" />
+<cfset gitCounts = application.git.commitCounts(url.start, url.end) />
 
 <div>
 	<table class="table table-bordered">

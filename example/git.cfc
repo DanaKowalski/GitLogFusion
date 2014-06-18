@@ -53,7 +53,7 @@
 		}
 
 		if (len(arguments.end) && isDate(arguments.end)) {
-			local.argList = local.argList & '" --before="' & arguments.end & '"';
+			local.argList = local.argList & ' --before="' & arguments.end & '"';
 		}
 
 		local.returnData = execGit("log", local.argList);

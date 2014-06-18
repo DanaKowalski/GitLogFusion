@@ -39,9 +39,9 @@
 					<div>
 						<button type="button" class="gitCntBtn btn btn-primary" id="cntTotals">Totals</button>
 						<cfoutput>
-						<button type="button" class="gitCntBtn btn btn-default" id="01-01-#Year(now())#">#Year(now())#</button>
-						<button type="button" class="gitCntBtn btn btn-default" id="01-01-#(Year(now()) - 1)#">#(Year(now()) - 1)#</button>
-						<button type="button" class="gitCntBtn btn btn-default" id="#dateFormat(dateAdd('d',-30,now()), 'mm-dd-yyyy')#">Last 30 Days</button>
+						<button type="button" class="gitCntBtn btn btn-default" start="01-01-#year(now())#" end="01-01-#year(now()) + 1#">#year(now())#</button>
+						<button type="button" class="gitCntBtn btn btn-default" start="01-01-#year(now())#" end="01-01-#year(now()) - 1#">#(year(now()) - 1)#</button>
+						<button type="button" class="gitCntBtn btn btn-default" start="#dateFormat(dateAdd('d',-30,now()), 'mm-dd-yyyy')#">Last 30 Days</button>
 						</cfoutput>
 					</div>
 					<div id="gitCount"></div>
