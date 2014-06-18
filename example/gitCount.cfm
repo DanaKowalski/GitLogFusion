@@ -10,10 +10,10 @@
 		</tr>
 		</thead>
 		<tbody>
-			<cfloop from="1" to="#structCount(gitCounts)#" index="i">
+			<cfloop collection="#gitCounts#" item="author">
 				<tr>
-					<td><cfoutput>#gitCounts[i]['author']#</cfoutput></td>
-					<td><cfoutput>#gitCounts[i]['count']#</cfoutput></td>
+					<td><cfoutput>#author#</cfoutput></td>
+					<td><cfoutput>#gitCounts[author]#</cfoutput></td>
 				</tr>
 			</cfloop>
 		</tbody>

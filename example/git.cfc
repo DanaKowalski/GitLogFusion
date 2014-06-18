@@ -45,8 +45,8 @@
 	* @hint commit counts, by author
 	*/
 	public struct function commitCounts (string begin='', string end='') {
-		local.argList = ' -s -n --all';
-		local.commitArr = structNew();
+		local.argList = ' --format=format:"%an"';
+		local.authorCounts = structNew();
 
 		if (len(arguments.begin) && isDate(arguments.begin)) {
 			local.argList = local.argList & ' --after="' & arguments.begin & '"';
@@ -56,18 +56,18 @@
 			local.argList = local.argList & '" --before="' & arguments.end & '"';
 		}
 
-		local.returnData = execGit("shortlog", local.argList);
+		local.returnData = execGit("log", local.argList);
 		// turn the text string into a list for parsing
-		local.returnData = replaceNoCase(local.returnData, chr(10), ',', 'all');
+		local.returnData = listToArray(local.returnData, chr(10));
 
-		// loop on list and use tab seperator to break out author vs count
-		for (local.i=1; local.i <= listLen(local.returnData); local.i++) {
-			local.commitArr[i] = structNew();
-			local.commitArr[i]['author'] = listGetAt(listGetAt(local.returnData,local.i),2, chr(9));
-			local.commitArr[i]['count'] = listGetAt(listGetAt(local.returnData,local.i),1,chr(9));
+		for (local.author in local.returnData) {
+			if (!structKeyExists(local.authorCounts, local.author)) {
+				local.authorCounts[local.author] = 0;
+			}
+			local.authorCounts[local.author]++;
 		}
 
-		return local.commitArr;
+		return local.authorCounts;
 	}
 
 /*
