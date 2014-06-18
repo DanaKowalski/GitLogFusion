@@ -1,4 +1,9 @@
-﻿component output="false" extends="execgit" {
+﻿component output="false" extends="execgit" accessors="true" {
+	property name="gitPath" type="string";
+	property name="repoPath" type="string";
+	property name="issueTrackingPath" type="string";
+	property name="issueTrackingRegex" type="string";
+
 	/**
 	* @hint init function for persistence
 	*/
@@ -14,7 +19,7 @@
 	/**
 	* @hint grabs the git log
 	*/
-	public string function log (string logType='', string start='', numeric limit=0, string author='') {
+	public string function log(string logType='', string start='', numeric limit=0, string author='') {
 		local.argList = '';
 
 		if (len(arguments.start)) {
@@ -131,40 +136,5 @@
 		}
 
 		return gitMsg;
-	}
-
-/*
-	Setters & Getters
-*/
-	private void function setGitPath(string gitPath='') {
-		VARIABLES.gitPath = arguments.gitPath;
-	}
-
-	private string function getGitPath() {
-		return VARIABLES.gitPath;
-	}
-
-	private void function setRepoPath(string repoPath='') {
-		VARIABLES.repoPath = arguments.repoPath;
-	}
-
-	private string function getRepoPath() {
-		return VARIABLES.repoPath;
-	}
-
-	private void function setIssueTrackingPath(string issueTrackingPath='') {
-		VARIABLES.issueTrackingPath = arguments.issueTrackingPath;
-	}
-
-	private string function getissueTrackingPath() {
-		return VARIABLES.issueTrackingPath;
-	}
-
-	private void function setIssueTrackingRegex(string issueTrackingRegex='') {
-		VARIABLES.issueTrackingRegex = arguments.issueTrackingRegex;
-	}
-
-	private string function getissueTrackingRegex() {
-		return VARIABLES.issueTrackingRegex;
 	}
 }
