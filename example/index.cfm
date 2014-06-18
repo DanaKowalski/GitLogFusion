@@ -3,12 +3,12 @@
 <!doctype html>
 <html>
 	<head>
-	    <link rel="stylesheet" href="/lib/bootstrap/css/slate.min.css">
-			<link rel="stylesheet" href="inc/style.css">
-	    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
-			<script type="text/javascript" src="inc/devdb.js"></script>
+	    <link rel="stylesheet" href="inc/slate.min.css">
+		<link rel="stylesheet" href="inc/style.css">
+	    <script type="text/javascript" src="inc/jquery.2.1.1.min.js"></script>
+		<script type="text/javascript" src="inc/devdb.js"></script>
 			
-			<title>Git Development</title>
+		<title>Git Development</title>
 	</head>
 	
 	<body style="padding:.5em;">

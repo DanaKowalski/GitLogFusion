@@ -12,8 +12,7 @@
 		return this;
 	}
 	
-	
-	/**
+	/*
 	* @hint grabs the git log
 	*/
 	public string function log (string logType='', string start='', numeric limit=0, string author='') {
@@ -38,7 +37,7 @@
 		return execGit('log', local.argList, arguments.logType);
 	}
 	
-	/**
+	/*
 	* @hint commit counts, by author
 	*/
 	public struct function commitCounts (string begin='', string end=''){
@@ -68,11 +67,11 @@
 	}
 	
 
-/*
-	Helper Funcs
-*/
+	/*
+	* Helper Funcs
+	*/
 
-	/**
+	/*
 	* @hint retrieves the list of files modified for a specific commit id
 	*/
 	public string function commitFileList (string commitId=''){
@@ -106,7 +105,7 @@
 		return local.gitLogXML;
 	}
 
-	/**
+	/*
 	* @hint provides an array of every author that exists in the repository
 	*/	
 	public array function gitLogAuthorList() {
@@ -121,7 +120,7 @@
 		return commitArr;
 	}
 
-	/**
+	/*
 	* @hint injects a link in the commit message to the issue tracker based on the regex (i.e. rm## it would link rm#100, it goes until the first space).
 	*/	
 	public string function gitIssueTrackingLink(gitMsg='')
@@ -139,9 +138,9 @@
 		return gitMsg;
 	}
 	
-/*
-	Setters & Getters
-*/	
+	/*
+	* Setters & Getters
+	*/	
 	private void function setGitPath(string gitPath='') {
 		VARIABLES.gitPath = arguments.gitPath;
 	}

@@ -1,8 +1,8 @@
 ﻿component {
 
-    this.name 							= "GitLogFusion";
-    this.applicationTimeout 			= CreateTimeSpan(0, 0, 0, 0); 
-    this.sessionManagement 				= true;
+    this.name 							    = "GitLogFusion";
+    this.applicationTimeout 		= CreateTimeSpan(0, 0, 30, 0); 
+    this.sessionManagement 			= true;
     this.sessionTimeout 				= CreateTimeSpan(0, 0, 30, 0);
 		setting showdebugoutput			= "no";
     function onApplicationStart() {
@@ -14,9 +14,9 @@
 	  //(ex rm## would make rm#1036 pop a link to issue 1036)
       application.gitIssueRegex = 'rm##';
       //url for viewing a specific item using the regex
-      application.issuePath 			= 'http://address/issuetracker/issues/';
+      application.issuePath 		= 'http://address/issuetracker/issues/';
       //create object
-      application.git					= createObject("component", "git").init(application.gitPath,application.gitRepo,application.issuePath,application.gitIssueRegex);
+      application.git					  = createObject("component", "git").init(application.gitPath,application.gitRepo,application.issuePath,application.gitIssueRegex);
       return true;
     }
 
